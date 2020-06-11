@@ -17,7 +17,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create registration" do
     assert_difference('Registration.count') do
-      post registrations_url, params: { registration: { horse: @registration.horse, rider: @registration.rider } }
+      post registrations_url, params: { registration: { horse: "Horse3", rider: "Rider3" } }
     end
 
     assert_redirected_to registration_url(Registration.last)

@@ -23,6 +23,12 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to registration_url(Registration.last)
   end
 
+  test "should not create registration with invalid params" do
+    assert_no_difference('Registration.count') do
+      post registrations_url, params: { registration: { horse: nil, rider: nil } }
+    end
+  end
+
   test "should show registration" do
     get registration_url(@registration)
     assert_response :success
@@ -36,6 +42,11 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
   test "should update registration" do
     patch registration_url(@registration), params: { registration: { horse: @registration.horse, rider: @registration.rider } }
     assert_redirected_to registration_url(@registration)
+  end
+
+  test "should not update registration with invalid params" do
+    patch registration_url(@registration), params: { registration: { rider: nil } }
+    assert_equal @registration.rider, Registration.find(@registration.id).rider
   end
 
   test "should destroy registration" do

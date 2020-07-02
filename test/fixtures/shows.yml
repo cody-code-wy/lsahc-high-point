@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  year: 2020
+  name: Show1
+
+two:
+  year: 2020
+  name: Show2
